@@ -12,8 +12,8 @@ This is an iOS application developed as part of the Cricut assessment. The app d
 - Unit and UI tests
 
 ## Requirements
-- Xcode 15 or later
-- iOS 16.0 or later
+- Xcode 16 or later
+- iOS 17.0 or later
 - Swift 5.8 or later
 
 ## Installation
