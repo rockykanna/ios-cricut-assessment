@@ -17,7 +17,7 @@ struct DetailView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     // Filtering the drawItems based on selected asset
-    var displayItems : [PaletteItem] { homeViewModel.drawItems.filter { $0.drawPath == selectedAsset }
+    var displayItems : [PaletteItem] { homeViewModel.drawItems.filter { $0.drawPath.shape == selectedAsset }
     }
     
     var body: some View {
@@ -34,7 +34,8 @@ struct DetailView: View {
                         })
                         .frame(maxWidth: .infinity)
                     Button("Add", action: {
-                        homeViewModel.addItem(paletteItem: PaletteItem(name: selectedAsset.rawValue.capitalized, drawPath: selectedAsset))
+                        let newItem = PaletteItem(name: selectedAsset.rawValue.capitalized, drawPath: ShapeType(shape: selectedAsset, style: .filled))
+                        homeViewModel.addItem(paletteItem: newItem)
                         })
                         .frame(maxWidth: .infinity)
                     Button("Remove", action: {

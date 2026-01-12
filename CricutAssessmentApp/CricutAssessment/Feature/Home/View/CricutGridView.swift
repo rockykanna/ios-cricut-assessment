@@ -27,13 +27,18 @@ struct CricutGridView: View {
     }
     
     @ViewBuilder func shapeView(_ item: PaletteItem) -> some View {
-        switch item.drawPath {
-        case .circle:
-            Circle()
-        case .triangle:
-            Triangle()
-        case .square:
-            Rectangle()
+
+        AnyView(item.drawPath.style.apply(item.drawPath.shape.shapeView))
+    }
+
+    func style<T: Shape>(_ shape: T, style: String) -> some View {
+        switch style {
+        case "dotted":
+            return AnyView(shape.stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [5], dashPhase: 0)))
+        case "stroked":
+            return AnyView(shape.stroke(lineWidth: 2))
+        default:
+            return AnyView(shape)
         }
     }
 }

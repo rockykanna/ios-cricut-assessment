@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 @MainActor
 class HomeViewModel: ObservableObject {
     
@@ -39,13 +40,13 @@ class HomeViewModel: ObservableObject {
     }
     
     func removeLast(paletteAsset:PaletteAsset) {
-        if let index = drawItems.lastIndex(where: { $0.drawPath == paletteAsset }) {
+        if let index = drawItems.lastIndex(where: { $0.drawPath.shape == paletteAsset }) {
             drawItems.remove(at: index)
         }
     }
     
     func removeAll(paletteAsset:PaletteAsset) {
-        drawItems.removeAll(where: { $0.drawPath == paletteAsset })
+        drawItems.removeAll(where: { $0.drawPath.shape == paletteAsset })
     }
     
     func addItem(paletteItem:PaletteItem) {

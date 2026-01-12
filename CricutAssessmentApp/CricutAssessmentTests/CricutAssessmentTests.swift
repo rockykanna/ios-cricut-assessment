@@ -59,6 +59,18 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(vm.drawItems[0].name, "Circle1")
         XCTAssertEqual(vm.drawItems[1].name, "Square")
     }
+    
+    @MainActor
+    func testFailureRemove() async {
+        let vm = HomeViewModel()
+        vm.drawItems = [
+            PaletteItem(name: "Square1", drawPath: .square),
+            PaletteItem(name: "Square2", drawPath: .square)
+        ]
+        vm.removeLast(paletteAsset: .circle)
+        XCTAssertEqual(vm.drawItems[0].name, "Square1")
+        XCTAssertEqual(vm.drawItems[1].name, "Square2")
+    }
 
     @MainActor
     func testRemoveAllWithAsset() async {
@@ -72,7 +84,8 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(vm.drawItems.count, 1)
         XCTAssertEqual(vm.drawItems[0].drawPath, .square)
     }
-
+    
+    
     @MainActor
     func testFetchData() async {
         let mockService = MockAPIService()

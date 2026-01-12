@@ -19,7 +19,7 @@ class PaletteService: PaletteServiceProtocol {
             self.network = network
     }
     
-    let url = URL(string: "https://staticcontent.cricut.com/static/test/shapes_001.json")!
+    let url = URL(string: "https://staticcontent.cricut.com/static/test/styled_shapes_001.json")!
     
     func fetchData() async throws -> Result<PaletteResponse, APIError> {
     
